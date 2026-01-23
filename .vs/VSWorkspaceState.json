@@ -1,0 +1,10 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\BackendApi",
+    "\\BackendApi\\UMS.Api",
+    "\\Database"
+  ],
+  "SelectedNode": "\\BackendApi\\UMS.Api\\appsettings.Development.json",
+  "PreviewInSolutionExplorer": false
+}
