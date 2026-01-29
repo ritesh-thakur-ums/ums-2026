@@ -9,17 +9,34 @@ namespace UMS.Api.Controllers
     public class AuthTestController : ControllerBase
     {
         private readonly IAuthService _authService;
+        private readonly ITokenService _tokenService;
 
-        public AuthTestController(IAuthService authService)
+        public AuthTestController(IAuthService authService, ITokenService tokenService)
         {
             _authService = authService;
+            _tokenService = tokenService;
         }
 
         [HttpPost]
         public async Task<IActionResult> Login(LoginRequestDto dto)
         {
             var result = await _authService.LoginAsync(dto);
-            return Ok(result);
+
+            if (!result.Success)
+                return Unauthorized(result);
+
+            var token =
+                _tokenService.CreateToken(
+                     result.UserId,
+                     result.Email,
+                     result.Roles);
+
+            return Ok(new
+            {
+                token,
+                result.Email,
+                result.Roles
+            });
         }
     }
 }
