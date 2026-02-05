@@ -60,6 +60,8 @@ app.UseAuthentication();
 
 app.UseAuthorization();
 
+app.UseExceptionHandler("/error");
+
 app.MapControllers();
 
 var summaries = new[]
