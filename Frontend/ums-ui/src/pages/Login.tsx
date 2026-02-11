@@ -1,4 +1,5 @@
 import {useState} from "react";
+import {loginUser} from "../services/authService";
 
 const Login= ()=> {
     const[email , setEmail] = useState<string>("");
@@ -7,7 +8,9 @@ const Login= ()=> {
 
     const [errors, setErrors] = useState<string>("");
 
-    const handleSubmit = (e: React.FormEvent) => { 
+    const[loading, setLoading] = useState<boolean>(false);
+
+    const handleSubmit = async (e: React.FormEvent) => { 
           e.preventDefault();
           debugger;
           if(!email || !password)
@@ -22,8 +25,29 @@ const Login= ()=> {
             return;
           }
 
-          setErrors("");
+          try{
+            setLoading(true);
+            setErrors("");
+            
+            const result = await loginUser({
+              email,
+              password
+            });
 
+            console.log("Login success:", result);
+
+            alert("Login success! Token received.");
+          } catch(error: any) {
+              console.log(error);
+
+              if(error.response?.status === 401) {
+                 setErrors("Invalid credentials");
+              } else {
+                setErrors("Server error");
+              }
+          } finally {
+            setLoading(false);
+          }
           console.log("Valid form:", email, password);
     }
 
@@ -45,7 +69,9 @@ const Login= ()=> {
             onChange={(e) => setPassword(e.target.value)} style={styles.input} />
             {errors && <p style={styles.error}>{errors}</p>}
 
-            <button type="submit" style={styles.button}>Login</button>
+            <button type="submit" style={styles.button} disabled={loading}>
+              {loading ? "Logging in..." : "Login" }
+            </button>
           </form>
         </div>
     );
