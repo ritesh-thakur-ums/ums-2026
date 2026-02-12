@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("UMS.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+50adf939b36b1e61c9ec4b8ba0b271b4b6808d57")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+25545f81e25de992a19019ab6c77f0694188bafb")]
 [assembly: System.Reflection.AssemblyProductAttribute("UMS.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UMS.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

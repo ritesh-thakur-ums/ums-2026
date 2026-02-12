@@ -5,19 +5,19 @@ using UMS.Api.Services.Auth;
 namespace UMS.Api.Controllers
 {
     [ApiController]
-    [Route("api/auth-test")]
-    public class AuthTestController : ControllerBase
+    [Route("api/auth")]
+    public class AuthController : ControllerBase
     {
         private readonly IAuthService _authService;
         private readonly ITokenService _tokenService;
 
-        public AuthTestController(IAuthService authService, ITokenService tokenService)
+        public AuthController(IAuthService authService, ITokenService tokenService)
         {
             _authService = authService;
             _tokenService = tokenService;
         }
 
-        [HttpPost]
+        [HttpPost("login")]
         public async Task<IActionResult> Login(LoginRequestDto dto)
         {
             var result = await _authService.LoginAsync(dto);
