@@ -1,5 +1,6 @@
 import {useState} from "react";
 import {loginUser} from "../services/authService";
+import { useNavigate } from "react-router-dom";
 
 const Login= ()=> {
     const[email , setEmail] = useState<string>("");
@@ -9,6 +10,8 @@ const Login= ()=> {
     const [errors, setErrors] = useState<string>("");
 
     const[loading, setLoading] = useState<boolean>(false);
+
+    const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent) => { 
           e.preventDefault();
@@ -37,6 +40,19 @@ const Login= ()=> {
             console.log("Login success:", result);
 
             alert("Login success! Token received.");
+
+            localStorage.setItem("token", result.token);
+
+            localStorage.setItem("email", result.email);
+
+            localStorage.setItem("roles", JSON.stringify(result.roles));
+
+            if(result.roles.includes("Admin")) {
+               navigate("/admin/dashboard");
+            } else {
+               navigate("/login");
+            }
+            
           } catch(error: any) {
               console.log(error);
 

@@ -4,3 +4,5 @@
 
 /.vs/VSStudio2/v17
 /BackendApi/.vs/UMS/FileContentIndex
+BackendApi/UMS.Api/obj/Debug/net8.0/UMS.Api.AssemblyInfoInputs.cache
+BackendApi/UMS.Api/obj/Debug/net8.0/UMS.Api.AssemblyInfo.cs
