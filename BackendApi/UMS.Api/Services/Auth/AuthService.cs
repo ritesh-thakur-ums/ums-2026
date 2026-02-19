@@ -6,6 +6,8 @@ using UMS.Api.DTOs.Auth;
 
 namespace UMS.Api.Services.Auth
 {
+    //Handles user authentication logic
+    //Validates credentials and returns structured response
     public class AuthService : IAuthService
     {
         private readonly AppDbContext _context;

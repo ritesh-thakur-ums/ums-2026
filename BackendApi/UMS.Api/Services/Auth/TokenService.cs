@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace UMS.Api.Services.Auth
 {
+    //Generates JWT Tokens with claims and roles
     public class TokenService : ITokenService
     {
         private readonly IConfiguration _config;
