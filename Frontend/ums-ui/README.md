@@ -1,3 +1,37 @@
+# User Management System(UMS)
+
+## Tech Stack
+
+- ASP.NET Core Web API(.Net 8)
+- Entity Framework Core
+- SQL Server
+- JWT Authentication
+- React + Typescript
+- Axios
+- React Router
+
+## Features
+
+- Admin seeding on startup
+- Secure login with JWT
+- Password hashing
+- Role based redirection
+- Protected frontend routes
+- Token expiry handling
+- Global 401 interceptor
+- Logout functionality
+
+## How to Run
+
+### Backend
+
+...bash
+dotnet run
+
+### Frontend
+
+npm start
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
