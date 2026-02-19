@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using UMS.Api.Data;
 using UMS.Api.Models;
 using UMS.Api.DTOs.Auth;
+using UMS.Api.Interfaces;
 
 namespace UMS.Api.Services.Auth
 {
@@ -10,23 +11,23 @@ namespace UMS.Api.Services.Auth
     //Validates credentials and returns structured response
     public class AuthService : IAuthService
     {
-        private readonly AppDbContext _context;
+    
         private readonly PasswordHasher<User> _passwordHasher;
         private readonly ILogger<AuthService> _logger;
 
-        public AuthService(AppDbContext context, ILogger<AuthService> logger)
+        private readonly IUserRepository _userRepository;
+        //private readonly ITokenService _tokenService;
+
+        public AuthService(IUserRepository userRepository, ILogger<AuthService> logger)
         {
-            _context = context;
+            _userRepository = userRepository;
             _passwordHasher = new PasswordHasher<User>();
             _logger = logger;
         }
 
         public async Task<LoginResponseDto> LoginAsync(LoginRequestDto request)
         {
-            var user = await _context.Users
-                .Include(u => u.UserRoles)
-                .ThenInclude(ur => ur.Role)
-                .FirstOrDefaultAsync(u => u.Email == request.Email);
+            var user = await _userRepository.GetByEmailAsync(request.Email);
 
             if (user == null)
             {
@@ -48,7 +49,7 @@ namespace UMS.Api.Services.Auth
                 return Fail("Invalid Credentials");
             }
 
-            var roles = user.UserRoles.Select(r => r.Role.RoleName).ToList();
+            var roles = await _userRepository.GetUserRolesAsync(user.UserId);
 
             _logger.LogInformation("Login success for {Email}", request.Email);
 

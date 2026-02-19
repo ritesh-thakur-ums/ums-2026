@@ -1,4 +1,4 @@
-﻿namespace UMS.Api.Services.Auth
+﻿namespace UMS.Api.Interfaces
 {
     public interface ITokenService
     {

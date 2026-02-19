@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using UMS.Api.DTOs.Auth;
-using UMS.Api.Services.Auth;
+using UMS.Api.Interfaces;
 
 namespace UMS.Api.Controllers
 {

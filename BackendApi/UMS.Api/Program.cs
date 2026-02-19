@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using UMS.Api.Data;
+using UMS.Api.Interfaces;
+using UMS.Api.Repositories;
 using UMS.Api.Seed;
 using UMS.Api.Services.Auth;
 
@@ -46,6 +48,8 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod();
         });
 });
+
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 

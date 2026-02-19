@@ -2,6 +2,7 @@
 using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
+using UMS.Api.Interfaces;
 
 namespace UMS.Api.Services.Auth
 {
