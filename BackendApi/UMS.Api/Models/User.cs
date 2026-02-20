@@ -6,12 +6,12 @@ namespace UMS.Api.Models
     public class User
     { 
         public int UserId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Email { get; set; }
-        public string PasswordHash { get; set; }
+        public string? FirstName { get; set; } 
+        public string? LastName { get; set; }
+        public string? Email { get; set; }
+        public string? PasswordHash { get; set; }
         public bool IsActive { get; set; }
         public DateTime CreatedOn { get; set; }
-        public ICollection<UserRole> UserRoles { get; set; }
+        public ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
     }
 }
